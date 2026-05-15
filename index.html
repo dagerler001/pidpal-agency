@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PIDPAL AGENCY — запалюємо бренди</title>
+<meta name="description" content="Креативна агенція PIDPAL. SMM, дизайн, маркетинг. Працюємо з тими, хто не боїться бути помітним." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;700&family=Caveat:wght@400;700&family=Caveat+Brush&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- SVG filters used for the burn effect (turbulence + displacement = wavy/charred edges) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="burn-edge" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.04" numOctaves="3" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="28" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="burn-edge-strong" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.025 0.06" numOctaves="4" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="46" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- Floating embers canvas (full-screen, behind content) -->
+<canvas id="embers"></canvas>
+
+<!-- Custom matchstick cursor (hidden on touch via media query) -->
+<div id="cursor" aria-hidden="true">
+  <svg viewBox="0 0 18 90" width="22" height="110" xmlns="http://www.w3.org/2000/svg">
+    <!-- wooden stick -->
+    <defs>
+      <linearGradient id="wood" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#D9B485"/>
+        <stop offset="0.5" stop-color="#A87E50"/>
+        <stop offset="1" stop-color="#6F4E2F"/>
+      </linearGradient>
+      <radialGradient id="head" cx="0.4" cy="0.35" r="0.7">
+        <stop offset="0" stop-color="#FFE08A"/>
+        <stop offset="0.3" stop-color="#FF8A1A"/>
+        <stop offset="1" stop-color="#6B0E20"/>
+      </radialGradient>
+    </defs>
+    <rect x="6" y="22" width="6" height="64" rx="2" fill="url(#wood)"/>
+    <ellipse cx="9" cy="20" rx="9" ry="13" fill="url(#head)"/>
+  </svg>
+  <div class="cursor-flame"></div>
+</div>
+
+<!-- =========================== HERO =========================== -->
+<header class="hero" id="top">
+  <nav class="nav">
+    <a class="nav-brand" href="#top">
+      <img src="assets/instagram/00_logo.jpg" alt="PIDPAL" class="nav-logo">
+      <span>PIDPAL</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#manifesto">Маніфест</a></li>
+      <li><a href="#services">Послуги</a></li>
+      <li><a href="#cases">Кейси</a></li>
+      <li><a href="#contact" class="nav-cta">Бриф</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="hero-logo-wrap" aria-hidden="true">
+      <img src="assets/instagram/00_logo.jpg" alt="" class="hero-logo">
+      <div class="hero-flames"></div>
+    </div>
+
+    <p class="hero-eyebrow">Креативна агенція • SMM • Дизайн • Маркетинг</p>
+    <h1 class="hero-title">
+      Запалюємо<br/>
+      <span class="hero-title-accent">бренди</span>
+      <span class="hero-script">slay</span>
+    </h1>
+    <p class="hero-sub">
+      Ми працюємо з тими, хто не боїться бути помітним.
+      <br/>Від стратегії до реалізації — комплексно й з вогником.
+    </p>
+
+    <a href="#contact" class="btn-match">
+      <span class="btn-match-stick"></span>
+      <span class="btn-match-label">Зробити підпал</span>
+    </a>
+
+    <div class="hero-scrollcue">↓ скрол, поки не загорілось</div>
+  </div>
+</header>
+
+<!-- =========================== MANIFESTO =========================== -->
+<section class="manifesto" id="manifesto">
+  <div class="paper">
+    <div class="paper-tape paper-tape-l"></div>
+    <div class="paper-tape paper-tape-r"></div>
+
+    <p class="manifesto-eyebrow"><span class="script">our manifesto</span> ↘</p>
+    <h2 class="manifesto-quote">
+      PIDPAL AGENCY — це про <em>швидкість</em>,
+      <em>енергію</em> й <em>партнерство</em>.
+    </h2>
+    <p class="manifesto-body">
+      Ми працюємо з тими, хто не боїться бути помітним,
+      <strong>і запалюємо бренди разом.</strong>
+    </p>
+    <div class="manifesto-sig">
+      <span class="script">— команда pidpal</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== SERVICES =========================== -->
+<section class="services" id="services">
+  <div class="services-head">
+    <p class="eyebrow"><span class="script">наші послуги</span> ↓</p>
+    <h2 class="section-title">Що ми <span class="accent">запалюємо</span></h2>
+    <p class="section-sub">Клікни на картку — побачиш, що всередині. <em>(буквально)</em></p>
+  </div>
+
+  <div class="pinboard">
+    <!-- Service Card 1 -->
+    <article class="card" data-tilt="-3">
+      <div class="card-pin"></div>
+      <div class="card-front">
+        <span class="card-num">01</span>
+        <h3 class="card-title">SMM</h3>
+        <p class="card-tag">контент, що тримає увагу</p>
+        <span class="card-cta">клікни, щоб <em>підпалити</em> →</span>
+      </div>
+      <div class="card-back">
+        <h3>SMM &amp; контент</h3>
+        <ul>
+          <li>Стратегія присутності</li>
+          <li>Рубрикатор і контент-план</li>
+          <li>Reels, статичні пости, сторіс</li>
+          <li>Аналітика і ріст</li>
+        </ul>
+        <a href="#contact" class="card-link">обговорити проєкт →</a>
+      </div>
+    </article>
+
+    <!-- Service Card 2 -->
+    <article class="card" data-tilt="2">
+      <div class="card-pin"></div>
+      <div class="card-front">
+        <span class="card-num">02</span>
+        <h3 class="card-title">Дизайн</h3>
+        <p class="card-tag">візуал, який не забувається</p>
+        <span class="card-cta">клікни, щоб <em>підпалити</em> →</span>
+      </div>
+      <div class="card-back">
+        <h3>Дизайн</h3>
+        <ul>
+          <li>Брендинг і айдентика</li>
+          <li>Креативи для реклами</li>
+          <li>Дизайн для соцмереж</li>
+          <li>Лендінги і презентації</li>
+        </ul>
+        <a href="#contact" class="card-link">обговорити проєкт →</a>
+      </div>
+    </article>
+
+    <!-- Service Card 3 -->
+    <article class="card" data-tilt="-2">
+      <div class="card-pin"></div>
+      <div class="card-front">
+        <span class="card-num">03</span>
+        <h3 class="card-title">Маркетинг</h3>
+        <p class="card-tag">стратегія від першого дотику до купівлі</p>
+        <span class="card-cta">клікни, щоб <em>підпалити</em> →</span>
+      </div>
+      <div class="card-back">
+        <h3>Маркетинг</h3>
+        <ul>
+          <li>Дослідження аудиторії</li>
+          <li>Позиціювання й TOV</li>
+          <li>Performance і таргет</li>
+          <li>Воронки і конверсії</li>
+        </ul>
+        <a href="#contact" class="card-link">обговорити проєкт →</a>
+      </div>
+    </article>
+
+    <!-- Service Card 4 -->
+    <article class="card" data-tilt="4">
+      <div class="card-pin"></div>
+      <div class="card-front">
+        <span class="card-num">04</span>
+        <h3 class="card-title">Продакшн</h3>
+        <p class="card-tag">від ідеї до запуску — все в одних руках</p>
+        <span class="card-cta">клікни, щоб <em>підпалити</em> →</span>
+      </div>
+      <div class="card-back">
+        <h3>Продакшн</h3>
+        <ul>
+          <li>Концепція кампанії</li>
+          <li>Креативний продакшн</li>
+          <li>Інтеграції з блогерами</li>
+          <li>Запуск і супровід</li>
+        </ul>
+        <a href="#contact" class="card-link">обговорити проєкт →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- =========================== CASES TEASER =========================== -->
+<section class="cases" id="cases">
+  <div class="cases-head">
+    <p class="eyebrow"><span class="script">case study</span> ↓</p>
+    <h2 class="section-title">Як ми думаємо про бренди</h2>
+    <p class="section-sub">
+      <em>«Hannah Montana — серіал закінчився давно, а бренд досі генерує попит,
+      колекції і нові інфоприводи.»</em>
+      Розбираємо, що робить бренд таким, що його не забувають.
+    </p>
+  </div>
+
+  <div class="case-strip">
+    <figure class="polaroid" style="--rot:-4deg">
+      <img src="assets/instagram/01_hannah_montana.jpg" alt="Hannah Montana case">
+      <figcaption>СЕКРЕТ ХАННА МОНТАНА</figcaption>
+    </figure>
+    <figure class="polaroid" style="--rot:3deg">
+      <img src="assets/instagram/03_valentines.jpg" alt="Valentines edition">
+      <figcaption>ВАЛЕНТИНКИ-CTA</figcaption>
+    </figure>
+    <figure class="polaroid" style="--rot:-2deg">
+      <img src="assets/instagram/02_workflow.jpg" alt="Workflow reality show">
+      <figcaption>РЕАЛІТІ-ШОУ</figcaption>
+    </figure>
+    <figure class="polaroid" style="--rot:5deg">
+      <img src="assets/instagram/05_team.jpg" alt="Team">
+      <figcaption>ХТО МИ?</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- =========================== CONTACT MATCHBOX =========================== -->
+<section class="contact" id="contact">
+  <div class="contact-head">
+    <p class="eyebrow"><span class="script">light it up</span> ↓</p>
+    <h2 class="section-title">Розкажи про <span class="accent">свій бренд</span></h2>
+    <p class="section-sub">Натисни кришку коробки. Всередині — місце для брифа.</p>
+  </div>
+
+  <div class="matchbox" id="matchbox" tabindex="0" role="button" aria-expanded="false" aria-label="Відкрити коробку з брифом">
+    <div class="matchbox-lid">
+      <div class="matchbox-stripe"></div>
+      <p class="matchbox-label">PIDPAL · safety matches</p>
+      <p class="matchbox-hint">↑ потягни кришку</p>
+    </div>
+    <div class="matchbox-inside">
+      <form class="brief-form" id="briefForm">
+        <label>
+          <span>Як тебе звати?</span>
+          <input type="text" name="name" required autocomplete="name">
+        </label>
+        <label>
+          <span>Який бренд?</span>
+          <input type="text" name="brand" required>
+        </label>
+        <label>
+          <span>З чим прийшов? <em>(коротко)</em></span>
+          <textarea name="brief" rows="3" required></textarea>
+        </label>
+        <label>
+          <span>Як тебе знайти? (telegram / instagram / email)</span>
+          <input type="text" name="contact" required>
+        </label>
+        <button type="submit" class="btn-match btn-submit">
+          <span class="btn-match-stick"></span>
+          <span class="btn-match-label">Підпалити бриф 🔥</span>
+        </button>
+      </form>
+      <div class="brief-success" hidden>
+        <h3>🔥 Бриф підпалено</h3>
+        <p>Скопіюй це і надішли нам в <a href="https://instagram.com/pidpal_agency" target="_blank" rel="noopener">@pidpal_agency</a> в Direct — відповімо за 24 години.</p>
+        <pre class="brief-output"></pre>
+        <button type="button" class="copy-btn">📋 скопіювати</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== FOOTER =========================== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-brand">PIDPAL AGENCY · 2026</p>
+    <p class="footer-tagline"><span class="script">we set brands on fire — gently</span></p>
+    <a href="https://instagram.com/pidpal_agency" target="_blank" rel="noopener" class="footer-ig">@pidpal_agency ↗</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
