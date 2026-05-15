@@ -1046,7 +1046,13 @@ a { color: inherit; text-decoration: none; }
   }
   .card {
     aspect-ratio: auto;
-    min-height: 200px;
+    min-height: 0;
+    display: grid;
+  }
+  .card-front, .card-back {
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;
   }
   .card-pin { width: 20px; height: 20px; top: -10px; }
   .card-front, .card-back { padding: 18px 14px; border-radius: 4px; }
@@ -1090,5 +1096,5 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 380px) {
   .hero-title { font-size: 11.8vw; }
   .pinboard { grid-template-columns: 1fr; gap: 36px; }
-  .card { min-height: 180px; }
+  .card { min-height: 0; }
 }
